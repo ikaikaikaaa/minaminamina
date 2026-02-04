@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Be My Valentine 💖</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Comic Sans MS", "Poppins", cursive;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #ffd6ec, #e6d6ff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+      padding: 20px;
+      max-width: 90%;
+    }
+
+    h1 {
+      color: #ff4f9a;
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+    }
+
+    .emoji-row {
+      font-size: 2rem;
+      margin-bottom: 15px;
+    }
+
+    .buttons {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    #yesBtn {
+      background-color: #ff77b7;
+      color: white;
+    }
+
+    #noBtn {
+      background-color: #b388ff;
+      color: white;
+      position: relative;
+    }
+
+    #message {
+      margin-top: 30px;
+      font-size: 1.5rem;
+      color: #ff4f9a;
+      display: none;
+    }
+
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background-color: pink;
+      top: -10px;
+      animation: fall 3s linear forwards;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(360deg);
+      }
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      button {
+        width: 140px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="emoji-row">
+      💕 🖤 💕
+    </div>
+
+    <h1>Wanna be my Valentine? 💖</h1>
+
+    <div class="buttons">
+      <button id="yesBtn">Yes</button>
+      <button id="noBtn">No</button>
+    </div>
+
+    <div id="message">
+      i love u so much baby :)💕
+    </div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const message = document.getElementById("message");
+
+    let noClicks = 0;
+
+    noBtn.addEventListener("mouseover", moveNoButton);
+    noBtn.addEventListener("click", moveNoButton);
+
+    function moveNoButton() {
+      noClicks++;
+
+      const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+      const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+
+      noBtn.style.position = "fixed";
+      noBtn.style.left = `${x}px`;
+      noBtn.style.top = `${y}px`;
+
+      if (noClicks >= 4) {
+        noBtn.style.opacity = "0";
+        setTimeout(() => {
+          noBtn.style.display = "none";
+        }, 500);
+      }
+    }
+
+    yesBtn.addEventListener("click", () => {
+      message.style.display = "block";
+      launchConfetti();
+    });
+
+    function launchConfetti() {
+      for (let i = 0; i < 80; i++) {
+        const confetti = document.createElement("div");
+        confetti.classList.add("confetti");
+
+        confetti.style.left = Math.random() * window.innerWidth + "px";
+        confetti.style.backgroundColor = 
+          ["#ff77b7", "#ffd6ec", "#b388ff", "#ffffff"][
+            Math.floor(Math.random() * 4)
+          ];
+
+        document.body.appendChild(confetti);
+
+        setTimeout(() => {
+          confetti.remove();
+        }, 3000);
+      }
+    }
+  </script>
+
+</body>
+</html>
