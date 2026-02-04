@@ -3,12 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Be My Valentine 💖</title>
+  <title>hi :)</title>
 
   <style>
     * {
       box-sizing: border-box;
       font-family: "Comic Sans MS", "Poppins", cursive;
+      .photos {
+  display: none;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 25px;
+  flex-wrap: wrap;
+}
+
+.photos img {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 20px;
+  border: 4px solid #ff77b7;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
     }
 
     body {
@@ -104,10 +121,10 @@
 
   <div class="container">
     <div class="emoji-row">
-      💕 🖤 💕
+      💕 💕
     </div>
 
-    <h1>Wanna be my Valentine? 💖</h1>
+    <h1>Wanna be my Valentine? xpp</h1>
 
     <div class="buttons">
       <button id="yesBtn">Yes</button>
@@ -118,7 +135,11 @@
       i love u so much baby :)💕
     </div>
   </div>
-
+<div id="photos" class="photos">
+  <img src="us1.jpg" alt="Us together">
+  <img src="us2.jpg" alt="Us together">
+</div>
+  
   <script>
     const noBtn = document.getElementById("noBtn");
     const yesBtn = document.getElementById("yesBtn");
@@ -147,9 +168,12 @@
       }
     }
 
-    yesBtn.addEventListener("click", () => {
-      message.style.display = "block";
-      launchConfetti();
+  yesBtn.addEventListener("click", () => {
+  message.style.display = "block";
+  document.getElementById("photos").style.display = "flex";
+  launchConfetti();
+});
+    
     });
 
     function launchConfetti() {
